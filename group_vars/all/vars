@@ -1,13 +1,14 @@
-alf_home: "/opt/alfresco"
+alf_home: "/opt/alfresco-6.2.2"
 alf_data: "{{ alf_home }}/alf_data"
 alf_dir_contentstore: contentstore
 alf_dir_contentstore_deleted: contentstore.deleted
 
-alf_initial_admin_password: "{{ vault_alf_initial_admin_password }}"
+alf_initial_admin_password: "p"
 alf_context: alfresco
 alf_host: 127.0.0.1
 alf_port: 8080
 alf_protocol: http
+alf_standard_password: "p@ss"
 
 share_context: share
 share_host: 127.0.0.1
@@ -34,25 +35,25 @@ alf_user: "alfresco"
 alf_group: "alfresco"
 java_opts_xmx: 15250M
 
-alf_install_dir: /opt/alfresco-6.2.0-ga
-alf_archive: "alfresco-content-services-community-distribution-6.2.0-ga.zip"
-alf_archive_root_dir: "alfresco-content-services-community-distribution-6.2.0-ga"
-tomcat_archive: "apache-tomcat-8.5.34.tar.gz"
-tomcat_dir: "apache-tomcat-8.5.34"
-search_archive: "alfresco-search-services-1.4.0.zip"
+alf_install_dir: /opt/alfresco-6.2.2
+alf_archive: "alfresco-content-services-distribution-6.2.2.zip"
+alf_archive_root_dir: "alfresco-content-services-distribution-6.2.2"
+tomcat_archive: "apache-tomcat-8.5.43.tar.gz"
+tomcat_dir: "apache-tomcat-8.5.43"
+search_archive: "alfresco-search-services-2.0.0.zip"
 search_install_dir: '{{ alf_install_dir }}/alfresco-search-services'
 
 alf_db_driver: org.postgresql.Driver
-alf_db_driver_file: postgresql-42.2.5.jar
+alf_db_driver_file: postgresql-42.2.14.jar
 alf_db_username: alfresco
-alf_db_password: "{{ vault_alf_db_password }}"
+alf_db_password: "p@ss"
 alf_db_name: alfresco
 alf_db_url: "jdbc:postgresql://localhost:5432/${db.name}"
 
-alf_java_home: "/usr/java/jdk-11.0.1"
+alf_java_home: "/home/alfresco/java"
 
-activemq_archive: "apache-activemq-5.15.6-bin.tar.gz"
-activemq_dir: "apache-activemq-5.15.6"
+activemq_archive: "apache-activemq-5.15.8-bin.tar.gz"
+activemq_dir: "apache-activemq-5.15.8"
 activemq_opts_memory: "-Xms64M -Xmx1G"
 activemq_user: "{{ alf_user }}"
 
@@ -66,8 +67,8 @@ alf_aos_base_url: http://localhost/alfresco/aos
 
 alf_ftp_port: 2121
 
-alf_jmx_monitor_password: "{{ vault_alf_jmx_monitor_password }}"
-alf_jmx_control_password: "{{ vault_alf_jmx_control_password }}"
+alf_jmx_monitor_password: "{{ alf_standard_password }}"
+alf_jmx_control_password: "{{ alf_standard_password }}"
 
 imagemagick_root: /
 imagemagick_dynlib: /lib
@@ -103,5 +104,5 @@ transformations_enabled: true
 
 ssl_enabled: false
 alf_keystore_key_alias: server
-alf_keystore_password: "{{ vault_alf_keystore_password }}"
-alf_truststore_password: "{{ vault_alf_truststore_password }}"
+alf_keystore_password: "{{ alf_standard_password }}"
+alf_truststore_password: "{{ alf_standard_password }}"

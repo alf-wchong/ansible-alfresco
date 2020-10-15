@@ -1,10 +1,10 @@
-alf_host: alfdev1.metaversant.com
+alf_host: ec2-3-83-18-173.compute-1.amazonaws.com
 
-share_host: alfdev1.metaversant.com
+share_host: ec2-3-83-18-173.compute-1.amazonaws.com
 
-alf_solr_host: solrdev1.metaversant.com
+alf_solr_host: ec2-3-83-18-173.compute-1.amazonaws.com
 
-alf_db_url: "jdbc:postgresql://alfresco-dev.c8uozf6iuroi.us-east-1.rds.amazonaws.com:5432/${db.name}"
+alf_db_url: "jdbc:postgresql://ec2-3-83-18-173.compute-1.amazonaws.com:5432/${db.name}"
 
 jodconverter_office_home: /usr/bin
 

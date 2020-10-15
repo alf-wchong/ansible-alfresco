@@ -5,12 +5,14 @@
 192.168.33.10
 
 [alfresco_dev]
-alfdev1.metaversant.com
+ec2-3-83-18-173.compute-1.amazonaws.com ansible_ssh_private_key_file=/home/adf/ExpressScript-AlfWM.pem ansible_user=centos
+#alfdev1.metaversant.com
 #alfdev2.metaversant.com
 #alfdev3.metaversant.com
 
 [solr_dev]
-solrdev1.metaversant.com
+ec2-23-22-194-197.compute-1.amazonaws.com
+#solrdev1.metaversant.com
 #solrdev2.metaversant.com
 
 [alfresco_test]
