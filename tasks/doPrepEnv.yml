@@ -1,0 +1,60 @@
+---
+- name: Create Alfresco home
+  file: 
+    path: '{{ alf_home }}'
+    state: directory
+    owner: '{{ alf_install_owner }}'
+    group: '{{ alf_install_owner }}'
+
+- name: Create Java home
+  file: 
+    path: '{{ alf_java_home }}'
+    state: directory
+    owner: '{{ alf_install_owner }}'
+    group: '{{ alf_install_owner }}'
+
+- name: Install Java
+  unarchive:
+    src: '{{ java_installer_src }}'
+    dest: '{{ alf_java_home }}'
+    owner: '{{ alf_install_owner }}'
+    group: '{{ alf_install_owner }}'
+    remote_src: yes
+# set remote_src to false if the remote host has no internet connection
+    list_files: yes
+  register: archive_contents
+# https://stackoverflow.com/questions/37576449/how-to-tell-what-directory-was-created-by-ansibles-unarchive-module
+
+#- name: Hack to prevent clean up of JDK directory below from failing
+#  file:
+#    state: directory
+#    path: "{{ alf_java_home }}/{{ archive_contents.files[0].split('/')[0] }}"
+
+- name: Move Java files up one dir
+  shell:
+    chdir: '{{ alf_java_home }}'
+    cmd: mv -n '{{ alf_java_home }}'/'{{ archive_contents.files[0].split('/')[0] }}'/* '{{ alf_java_home }}'
+
+- name: Clean up the JDK directory
+  file:
+    state: absent
+    path: "{{ alf_java_home }}/{{ archive_contents.files[0].split('/')[0] }}"
+
+#- name: Set JAVA_HOME ownership
+#  shell:
+#    cmd: chown -R '{{ alf_install_owner }}':'{{ alf_install_owner }}' '{{ alf_java_home }}'
+
+- name: Set JAVA_HOME ownership
+  file:
+    path: '{{ alf_java_home }}'
+    state: directory
+    recurse: yes
+    owner: '{{ alf_install_owner }}'
+    group: '{{ alf_install_owner }}'
+
+
+
+
+
+
+

@@ -13,6 +13,6 @@
 
 - name: Extract PDF Renderer
   unarchive:
-    src: '{{ alf_home }}/dist/{{ alf_archive_root_dir }}/alfresco-pdf-renderer/alfresco-pdf-renderer-1.1-linux.tgz'
+    src: '{{ alf_home }}/dist/alfresco-pdf-renderer/alfresco-pdf-renderer-1.1-linux.tgz'
     dest: '{{ alf_home }}/common'
     copy: no

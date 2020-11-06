@@ -27,10 +27,10 @@
   unarchive: src=/tmp/{{ alf_archive }} dest={{ alf_home }}/dist copy=no
 
 - name: Copy Share Services AMP
-  shell: 'cp {{ alf_home }}/dist/amps/alfresco-share-services.amp {{ alf_home }}/amps/'
+  shell: 'cp {{ alf_home }}/dist/{{ alf_archive_root_dir }}/amps/alfresco-share-services.amp {{ alf_home }}/amps/'
 
 - name: Copy bin files
-  shell: 'for f in {{ alf_home }}/dist/bin/*; do cp $f {{ alf_home }}/bin/; done'
+  shell: 'for f in {{ alf_home }}/dist/{{ alf_archive_root_dir }}/bin/*; do cp $f {{ alf_home }}/bin/; done'
 
 - name: Make Alfresco scripts user executable
   file: dest="{{ alf_home }}/bin/{{ item }}" mode=u+x
@@ -39,10 +39,10 @@
     - clean_tomcat.sh
 
 - name: Copy Tomcat conf, lib, shared, and webapps files
-  shell: 'for f in {{ alf_home }}/dist/web-server/*; do cp -R $f {{ alf_home }}/{{ tomcat_dir }}/; done'
+  shell: 'for f in {{ alf_home }}/dist/{{ alf_archive_root_dir }}/web-server/*; do cp -R $f {{ alf_home }}/{{ tomcat_dir }}/; done'
 
 - name: Copy database driver into Tomcat lib
   copy: src=files/third-party/{{ alf_db_driver_file }} dest={{ alf_home }}/{{ tomcat_dir }}/lib/
 
 - name: Copy Alfresco keystore directory into alf_data
-  shell: 'cp -R {{ alf_home }}/dist/alf_data/keystore {{ alf_data }}/'
+  shell: 'cp -R {{ alf_home }}/dist/{{ alf_archive_root_dir }}/alf_data/keystore {{ alf_data }}/'

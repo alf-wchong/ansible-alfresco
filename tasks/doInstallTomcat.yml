@@ -1,7 +1,4 @@
 ---
-- name: Create Alfresco home
-  file: path={{ alf_home }} state=directory
-
 - name: Copy Tomcat archive
   copy: src=files/third-party/{{ tomcat_archive }} dest=/tmp/
 

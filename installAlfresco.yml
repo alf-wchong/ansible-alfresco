@@ -10,15 +10,22 @@
 #
 ---
 - hosts: '{{ hosts }}'
-  remote_user: alfresco
+  remote_user: centos
   tasks:
-    - include_tasks: tasks/doInstallTomcat.yml
-    - include_tasks: tasks/doInstallActivemq.yml
-    - include_tasks: tasks/doInstallAlfresco.yml
-    - include_tasks: tasks/doInstallPDFRenderer.yml
-    - include_tasks: tasks/doCopyAmps.yml
-    - include_tasks: tasks/doApplyAmps.yml
-    - include_tasks: tasks/doCopyGlobalProperties.yml
-    - include_tasks: tasks/doCopyTomcatConfig.yml
-    - include_tasks: tasks/doCopyShareConfig.yml
-    - include_tasks: tasks/doCopyAlfrescoConfig.yml
+    - include_tasks: tasks/doPrepEnv.yml 
+    - block:
+      - include_tasks: tasks/doInstallTomcat.yml
+      - include_tasks: tasks/doInstallActivemq.yml
+      - include_tasks: tasks/doInstallAlfresco.yml
+      - include_tasks: tasks/doInstallPDFRenderer.yml
+      - include_tasks: tasks/doCopyAmps.yml
+      - include_tasks: tasks/doApplyAmps.yml
+      - include_tasks: tasks/doCopyGlobalProperties.yml
+      - include_tasks: tasks/doCopyTomcatConfig.yml
+      - include_tasks: tasks/doCopyShareConfig.yml
+      - include_tasks: tasks/doCopyAlfrescoConfig.yml
+# do not set become: to be "yes".
+      become: true
+      become_method: su
+      become_user: '{{ alf_install_owner }}'
+
